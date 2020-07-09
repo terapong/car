@@ -14,9 +14,17 @@
     <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
     <param-value>true</param-value>
 </context-param>
+<welcome-file-list>
+    <welcome-file>/index.xhtml</welcome-file>
+</welcome-file-list>
+<context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>bootstrap</param-value>
+    </context-param>
 <data-source>
     <name>java:global/carDS</name>
     <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
     <url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1</url>
 </data-source>
+
 </web-app>

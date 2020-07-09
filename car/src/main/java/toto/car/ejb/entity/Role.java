@@ -2,7 +2,6 @@ package toto.car.ejb.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -28,8 +27,8 @@ public class Role implements Serializable {
     @Column(name="update_date", length=19)
     private Date updateDate;
     
-    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
-	private List<Customer> users;
+//    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
+//	private List<Customer> users;
 
 	public Long getId() {
 		return id;
@@ -70,13 +69,4 @@ public class Role implements Serializable {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-
-	public List<Customer> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<Customer> users) {
-		this.users = users;
-	}
-   
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name="employee")
+@Table(name="user")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -29,6 +29,9 @@ public class User implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="update_date", length=19)
     private Date updateDate;
+    
+    @OneToOne
+    private Shop shop;
 
 	public Long getId() {
 		return id;
@@ -76,5 +79,13 @@ public class User implements Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 }

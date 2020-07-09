@@ -7,7 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="user")
+@Table(name="customer")
 public class Customer implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -55,9 +55,13 @@ public class Customer implements Serializable {
     @Column(name="update_date", length=19)
     private Date updateDate;
     
+//    @ManyToOne
+//	@JoinColumn(name = "role_id")
+//	private Role role;
+    
     @ManyToOne
-	@JoinColumn(name = "role_id")
-	private Role role;
+   	@JoinColumn(name = "shop_id")
+   	private Shop shop;
 
 	public Long getId() {
 		return id;
@@ -171,11 +175,11 @@ public class Customer implements Serializable {
 		this.updateDate = updateDate;
 	}
 
-	public Role getRole() {
-		return role;
+	public Shop getShop() {
+		return shop;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setShop(Shop shop) {
+		this.shop = shop;
 	}
 }

@@ -2,25 +2,19 @@ package toto.car.ejb.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="role")
 public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name="name")
+    @Column(nullable = false, name="name", length = 50)
     private String name;
     
     @Column(name="create_user")
@@ -33,6 +27,9 @@ public class Role implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="update_date", length=19)
     private Date updateDate;
+    
+    @OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
+	private List<Customer> users;
 
 	public Long getId() {
 		return id;
@@ -72,6 +69,14 @@ public class Role implements Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public List<Customer> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<Customer> users) {
+		this.users = users;
 	}
    
 }

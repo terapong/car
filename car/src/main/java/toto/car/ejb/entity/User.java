@@ -3,27 +3,20 @@ package toto.car.ejb.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="employee")
-public class Employee implements Serializable {
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name="username")
+    @Column(nullable = false, name="username", length = 50)
     private String userName;
     
-    @Column(name="password")
+    @Column(nullable = false, name="password", length = 50)
     private String password;
     
     @Column(name="create_user")

@@ -5,15 +5,20 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.apache.log4j.Logger;
+import org.primefaces.event.CloseEvent;
 
 @Named("menubean")
 @ViewScoped
 public class MenuBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(MenuBean.class);
+	
+	@Inject
+	private IndexBean indexbean;
 
 	@PostConstruct
 	private void init() {
@@ -32,7 +37,8 @@ public class MenuBean implements Serializable {
 	
 	public String addColorClick() {
 		logger.debug("addColorClick");
-		return null;
+		indexbean.setContentCenter("color.xhtml");
+		return "main?facesRedirect=true";
 	}
 	
 	public String addBlandClick() {
@@ -42,11 +48,18 @@ public class MenuBean implements Serializable {
 	
 	public String addModelClick() {
 		logger.debug("addModelClick");
+		indexbean.setContentCenter("model.xhtml");
 		return null;
 	}
 	
 	public String reportClick() {
 		logger.debug("reportClick");
 		return null;
+	}
+	
+	public String handleClose(CloseEvent event) {
+		logger.debug("handleClose");
+		indexbean.setContentCenter("customer.xhtml");
+		return "main?facesRedirect=true";
 	}
 }

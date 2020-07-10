@@ -93,6 +93,9 @@ public class CustomerBean implements Serializable {
 	
 	public void btnNewClick() {
 		customer = new Customer();
+		customer.setCreateUser(indexBean.getUserName());
+		customer.setCreateDate(cal.getTime());
+		customer.setUpdateDate(cal.getTime());
 		mode = "insert";
 		logger.debug("btnNewClick");
 	}

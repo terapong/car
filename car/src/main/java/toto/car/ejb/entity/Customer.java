@@ -35,6 +35,9 @@ public class Customer implements Serializable {
     @Column(nullable = false, name="passport_no", length = 50)
     private String passportNo;
     
+    @Column(nullable = false, name="phone_mobile", length = 50)
+    private String phoneMobile;
+    
     @Column(nullable = false, name="country", length = 50)
     private String country;
     
@@ -54,6 +57,16 @@ public class Customer implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="update_date", length=19)
     private Date updateDate;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="rent_date", length=19)
+    private Date rentDate;
+    
+    @Column(name="rent_status")
+    private boolean rentStatus;
+    
+    @Column(name="comment") @Lob
+    private String comment;
     
 //    @ManyToOne
 //	@JoinColumn(name = "role_id")
@@ -181,5 +194,37 @@ public class Customer implements Serializable {
 
 	public void setShop(Shop shop) {
 		this.shop = shop;
+	}
+
+	public Date getRentDate() {
+		return rentDate;
+	}
+
+	public void setRentDate(Date rentDate) {
+		this.rentDate = rentDate;
+	}
+
+	public boolean isRentStatus() {
+		return rentStatus;
+	}
+
+	public void setRentStatus(boolean rentStatus) {
+		this.rentStatus = rentStatus;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getPhoneMobile() {
+		return phoneMobile;
+	}
+
+	public void setPhoneMobile(String phoneMobile) {
+		this.phoneMobile = phoneMobile;
 	}
 }

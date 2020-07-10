@@ -7,7 +7,6 @@ import javax.inject.Named;
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 
 import toto.car.ejb.entity.*;
@@ -27,10 +26,6 @@ public class IndexBean implements Serializable {
 //	private Long selectEmployeeID;
 	
 	private Shop shop;
-	
-	private ArrayList<Customer> customers;
-	private Customer selectedCustomer;
-	private Long selectCustomerID;
 	
 	private User user;
 	
@@ -54,7 +49,6 @@ public class IndexBean implements Serializable {
 //		logger.debug("Employee select: " + selectedEmployee.getUserName());
 		
 		user = setDummyUser();
-		customers = setDummyCustomer();
 		shop = setDummyShop();
 	}
 	
@@ -77,7 +71,7 @@ public class IndexBean implements Serializable {
 	
 	private Shop setDummyShop() {
 		Shop shop = new Shop();
-		shop.setAddress("fgdfggfd");
+		shop.setAddress("54/10 ซอยเริงรมณ์ ต.หัวหิน อ.หัวหิน จ.ประจวบคีรีขันธ์ 77120");
 		shop.setBusinessRegistration("123456789");
 		shop.setCreateDate(cal.getTime());
 		shop.setCreateUser("admin");
@@ -90,7 +84,7 @@ public class IndexBean implements Serializable {
 		shop.setPhoneFax("087-4349902");
 		shop.setPhoneMobile("087-4349902");
 		shop.setPhoneOffice("087-4349902");
-		shop.setShopName("Huhin");
+		shop.setShopName("ร้านพี่แขก car rent");
 		shop.setShopStatus(true);
 		shop.setUpdateDate(cal.getTime());
 		return shop;
@@ -117,56 +111,20 @@ public class IndexBean implements Serializable {
 //		return roles;
 //	}
 	
-	private ArrayList<Customer> setDummyCustomer() {
-		ArrayList<Customer> users = new ArrayList<Customer>();
-		Customer u1 = new Customer();
-		u1.setAddress("Address");
-		u1.setCountry("Thailand");
-		u1.setCreateDate(cal.getTime());
-		u1.setCreateUser("admin");
-		u1.setId(0L);
-		u1.setIdCard("3770600334048");
-		u1.setLicenseNo("123456789");
-		u1.setNameEN("Terapong");
-		u1.setSurnameEN("Potisuwan");
-		u1.setNameTH("ธีระพงษ์");
-		u1.setSurnameTH("โพธิสุวรรณ");
-		u1.setPassportNo("987654321");
-		u1.setPic("xxxxxx");
-		u1.setUpdateDate(cal.getTime());
-		users.add(u1);
-		
-		Customer u2 = new Customer();
-		u2.setAddress("Address");
-		u2.setCountry("Thailand");
-		u2.setCreateDate(cal.getTime());
-		u2.setCreateUser("admin");
-		u2.setId(0L);
-		u2.setIdCard("3770600334048");
-		u2.setLicenseNo("123456789");
-		u2.setNameEN("Ying");
-		u2.setSurnameEN("Potisuwan");
-		u2.setNameTH("หญิง");
-		u2.setSurnameTH("โพธิสุวรรณ");
-		u2.setPassportNo("987654321");
-		u2.setPic("xxxxxx");
-		u2.setUpdateDate(cal.getTime());
-		users.add(u2);
-		
-		return users;
-	}
-	
 	public String loginClick() {
 		logger.debug("Login click");
 		logger.debug("Login userName: " + userName);
 		logger.debug("Login password: " + password);
-		if((user.getUserName().equals(userName)) && (user.getPassword().equals(password))) {
-			logger.debug("Login true");
-			return "main.xhtml";
-		} else {
-			logger.debug("Login false");
-			return null;
-		}
+		
+		return "main.xhtml";
+		
+//		if((user.getUserName().equals(userName)) && (user.getPassword().equals(password))) {
+//			logger.debug("Login true");
+//			return "main.xhtml";
+//		} else {
+//			logger.debug("Login false");
+//			return null;
+//		}
 	}
 	
 	public void RegisterClick() {
@@ -226,29 +184,5 @@ public class IndexBean implements Serializable {
 
 	public void setShop(Shop shop) {
 		this.shop = shop;
-	}
-
-	public ArrayList<Customer> getCustomers() {
-		return customers;
-	}
-
-	public void setCustomers(ArrayList<Customer> customers) {
-		this.customers = customers;
-	}
-
-	public Customer getSelectedCustomer() {
-		return selectedCustomer;
-	}
-
-	public void setSelectedCustomer(Customer selectedCustomer) {
-		this.selectedCustomer = selectedCustomer;
-	}
-
-	public Long getSelectCustomerID() {
-		return selectCustomerID;
-	}
-
-	public void setSelectCustomerID(Long selectCustomerID) {
-		this.selectCustomerID = selectCustomerID;
 	}
 }

@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
 @ViewScoped
 public class MenuBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(IndexBean.class);
+	private static final Logger logger = Logger.getLogger(MenuBean.class);
 
 	@PostConstruct
 	private void init() {
@@ -42,6 +42,11 @@ public class MenuBean implements Serializable {
 	
 	public String addModelClick() {
 		logger.debug("addModelClick");
+		return null;
+	}
+	
+	public String reportClick() {
+		logger.debug("reportClick");
 		return null;
 	}
 }

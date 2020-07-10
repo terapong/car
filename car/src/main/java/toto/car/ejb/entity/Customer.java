@@ -41,7 +41,7 @@ public class Customer implements Serializable {
     @Column(nullable = false, name="country", length = 50)
     private String country;
     
-    @Column(nullable = false, name="pic", length = 50)
+    @Column(name="pic", length = 50)
     private String pic;
     
     @Column(nullable = false, name="address") @Lob
@@ -63,7 +63,7 @@ public class Customer implements Serializable {
     private Date rentDate;
     
     @Column(name="rent_status")
-    private boolean rentStatus;
+    private boolean rentStatus = false;
     
     @Column(name="comment") @Lob
     private String comment;
@@ -71,6 +71,9 @@ public class Customer implements Serializable {
 //    @ManyToOne
 //	@JoinColumn(name = "role_id")
 //	private Role role;
+    
+//    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+//	private List<Car> cars;    
     
     @ManyToOne
    	@JoinColumn(name = "shop_id")

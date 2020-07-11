@@ -15,19 +15,19 @@ import java.util.Calendar;
 
 import toto.car.ejb.entity.*;
 
-@Named("colorbean")
+@Named("blandbean")
 @ViewScoped
-public class ColorBean implements Serializable {
+public class BlandBean implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(ColorBean.class);
+	private static final Logger logger = Logger.getLogger(BlandBean.class);
 
 	private String mode;
 	private Calendar cal;
 	
-	private ArrayList<Color> colors;
-	private Color selectedColor;
-	private Long selectColorID;
-	private Color color;
+	private ArrayList<Bland> blands;
+	private Bland selectedBland;
+	private Long selectBlandID;
+	private Bland bland;
 	
 	@Inject
 	private IndexBean indexBean;
@@ -36,7 +36,7 @@ public class ColorBean implements Serializable {
 	private void init() {
 		logger.debug("init");
 		cal = Calendar.getInstance();
-		colors = setDummyColor();
+		blands = setDummyBland();
 	}
 	
 	@PreDestroy
@@ -44,68 +44,68 @@ public class ColorBean implements Serializable {
 		logger.debug("destroy");
 	}
 	
-	private ArrayList<Color> setDummyColor() {
-		ArrayList<Color> colors = new ArrayList<Color>();
-		Color c1 = new Color();
+	private ArrayList<Bland> setDummyBland() {
+		ArrayList<Bland> blands = new ArrayList<Bland>();
+		Bland c1 = new Bland();
 		c1.setCreateDate(cal.getTime());
 		c1.setCreateUser("admin");
 		c1.setId(0L);
-		c1.setName("แดง");
+		c1.setName("Honda");
 		c1.setUpdateDate(cal.getTime());
-		colors.add(c1);
+		blands.add(c1);
 		
-		Color c2 = new Color();
+		Bland c2 = new Bland();
 		c2.setCreateDate(cal.getTime());
 		c2.setCreateUser("admin");
 		c2.setId(1L);
-		c2.setName("ดำ");
+		c2.setName("Kavasaki");
 		c2.setUpdateDate(cal.getTime());
-		colors.add(c2);
+		blands.add(c2);
 		
-		Color c3 = new Color();
+		Bland c3 = new Bland();
 		c3.setCreateDate(cal.getTime());
 		c3.setCreateUser("admin");
 		c3.setId(2L);
-		c3.setName("น้ำเงิน");
+		c3.setName("Zusuki");
 		c3.setUpdateDate(cal.getTime());
-		colors.add(c3);
+		blands.add(c3);
 		
-		return colors;
+		return blands;
 	}
 	
 	public void btnNewClick() {
-		color = new Color();
-		color.setCreateUser(indexBean.getUserName());
-		color.setCreateDate(cal.getTime());
-		color.setUpdateDate(cal.getTime());
+		bland = new Bland();
+		bland.setCreateUser(indexBean.getUserName());
+		bland.setCreateDate(cal.getTime());
+		bland.setUpdateDate(cal.getTime());
 		mode = "insert";
 		logger.debug("btnNewClick");
 	}
 	
-	public void btnEditClick(Color r) {
-		selectedColor = r;
-		color = r;
+	public void btnEditClick(Bland r) {
+		selectedBland = r;
+		bland = r;
 		mode = "edit";
 		logger.debug("btnEditClick");
 	}
 	
 	public void btnSaveClick() {
 		if(mode.equals("insert")) {
-			colors.add(color);
+			blands.add(bland);
 		} else {
 			///save to database
 		}
 		logger.debug("btnSaveClick");
 	}
 	
-	public void btnDeleteClick(Color r) {
-		selectedColor = r;
+	public void btnDeleteClick(Bland r) {
+		selectedBland = r;
 		logger.debug("btnDeleteClick");
 	}
 	
 	public void confirmDeleteClick() {
 		try {
-			colors.remove(selectedColor);
+			blands.remove(selectedBland);
 		} catch(Exception ex) {
 			FacesMessage msg = new FacesMessage();
 			msg.setSummary("ไม่สามารถ ลบ ได้");
@@ -114,36 +114,36 @@ public class ColorBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
 	}
-
-	public ArrayList<Color> getColors() {
-		return colors;
+	
+	public ArrayList<Bland> getBlands() {
+		return blands;
 	}
 
-	public void setColors(ArrayList<Color> colors) {
-		this.colors = colors;
+	public void setBlands(ArrayList<Bland> blands) {
+		this.blands = blands;
 	}
 
-	public Color getSelectedColor() {
-		return selectedColor;
+	public Bland getSelectedBland() {
+		return selectedBland;
 	}
 
-	public void setSelectedColor(Color selectedColor) {
-		this.selectedColor = selectedColor;
+	public void setSelectedBland(Bland selectedBland) {
+		this.selectedBland = selectedBland;
 	}
 
-	public Long getSelectColorID() {
-		return selectColorID;
+	public Long getSelectBlandID() {
+		return selectBlandID;
 	}
 
-	public void setSelectColorID(Long selectColorID) {
-		this.selectColorID = selectColorID;
+	public void setSelectBlandID(Long selectBlandID) {
+		this.selectBlandID = selectBlandID;
 	}
 
-	public Color getColor() {
-		return color;
+	public Bland getBland() {
+		return bland;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setBland(Bland bland) {
+		this.bland = bland;
 	}
 }

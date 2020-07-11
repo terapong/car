@@ -29,8 +29,13 @@ public class ModelBean implements Serializable {
 	private Long selectModelID;
 	private Model model;
 	
+	private Long selectedBlandID;
+	
 	@Inject
 	private IndexBean indexBean;
+	
+	@Inject
+	private BlandBean blandBean;
 
 	@PostConstruct
 	private void init() {
@@ -52,6 +57,7 @@ public class ModelBean implements Serializable {
 		c1.setId(0L);
 		c1.setName("Fino");
 		c1.setUpdateDate(cal.getTime());
+		c1.setBland(blandBean.getBlands().get(0));
 		models.add(c1);
 		
 		Model c2 = new Model();
@@ -60,14 +66,16 @@ public class ModelBean implements Serializable {
 		c2.setId(1L);
 		c2.setName("Jazz");
 		c2.setUpdateDate(cal.getTime());
+		c2.setBland(blandBean.getBlands().get(0));
 		models.add(c2);
 		
 		Model c3 = new Model();
 		c3.setCreateDate(cal.getTime());
 		c3.setCreateUser("admin");
-		c3.setId(3L);
+		c3.setId(2L);
 		c3.setName("Dream");
 		c3.setUpdateDate(cal.getTime());
+		c3.setBland(blandBean.getBlands().get(1));
 		models.add(c3);
 		
 		return models;
@@ -79,11 +87,16 @@ public class ModelBean implements Serializable {
 		model.setCreateDate(cal.getTime());
 		model.setUpdateDate(cal.getTime());
 		mode = "insert";
+		
+		//edit after connect database
+		selectedBlandID = 0L;
+		
 		logger.debug("btnNewClick");
 	}
 	
 	public void btnEditClick(Model r) {
 		selectedModel = r;
+		selectedBlandID = r.getBland().getId();
 		model = r;
 		mode = "edit";
 		logger.debug("btnEditClick");
@@ -91,9 +104,10 @@ public class ModelBean implements Serializable {
 	
 	public void btnSaveClick() {
 		if(mode.equals("insert")) {
+			model.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
 			models.add(model);
 		} else {
-			///save to database
+			selectedModel.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
 		}
 		logger.debug("btnSaveClick");
 	}
@@ -146,4 +160,21 @@ public class ModelBean implements Serializable {
 	public void setModel(Model model) {
 		this.model = model;
 	}
+
+	public BlandBean getBlandBean() {
+		return blandBean;
+	}
+
+	public void setBlandBean(BlandBean blandBean) {
+		this.blandBean = blandBean;
+	}
+
+	public Long getSelectedBlandID() {
+		return selectedBlandID;
+	}
+
+	public void setSelectedBlandID(Long selectedBlandID) {
+		this.selectedBlandID = selectedBlandID;
+	}
+
 }

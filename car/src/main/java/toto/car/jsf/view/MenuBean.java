@@ -32,6 +32,7 @@ public class MenuBean implements Serializable {
 	
 	public String addCarClick() {
 		logger.debug("addCarClick");
+		indexbean.setContentCenter("car.xhtml");
 		return null;
 	}
 	
@@ -43,6 +44,7 @@ public class MenuBean implements Serializable {
 	
 	public String addBlandClick() {
 		logger.debug("addBlandClick");
+		indexbean.setContentCenter("bland.xhtml");
 		return null;
 	}
 	

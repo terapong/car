@@ -129,6 +129,18 @@ public class BlandBean implements Serializable {
 		logger.debug("addModelToBland ID: " + id + " Model ID: " + m.getId() + " Model Name: " + m.getName());
 	}
 	
+	public void updateModelToBland(Long id, Model m) {
+		//Bland bi = m.getBland(); //ลบ ตัวเก่าออก ก่อน
+		//blands.get(id.intValue()).getModels().remove(m.getId().intValue());
+		//blands.get(id.intValue()).getModels().add(m);
+		logger.debug("updateModelToBland ID: " + id + " Model ID: " + m.getId() + " Model Name: " + m.getName());
+	}
+	
+	public void deleteModelFomeBland(Long id, Model m) {
+		blands.get(id.intValue()).getModels().remove(m.getId().intValue());
+		logger.debug("deleteModelFomeBland ID: " + id + " Model ID: " + m.getId() + " Model Name: " + m.getName());
+	}
+	
 	public void btnNewClick() {
 		bland = new Bland();
 		bland.setCreateUser(indexBean.getUserName());

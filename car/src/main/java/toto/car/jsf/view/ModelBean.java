@@ -51,6 +51,12 @@ public class ModelBean implements Serializable {
 		logger.debug("destroy");
 	}
 	
+	public void selectBlandChang() {
+		model.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
+		logger.debug("selectedBlandID: " + selectedBlandID);
+		logger.debug("selectBlandChang: " + blandBean.getBlands().get(selectedBlandID.intValue()).getName());
+	}
+	
 	private ArrayList<Model> setDummyModel() {
 		ArrayList<Model> models = new ArrayList<Model>();
 		Model c1 = new Model();
@@ -101,18 +107,18 @@ public class ModelBean implements Serializable {
 		selectedBlandID = r.getBland().getId();
 		model = r;
 		mode = "edit";
-		logger.debug("btnEditClick");
+		logger.debug("btnEditClick" + " selectedBlandName: " + r.getBland().getName());
 	}
 	
 	public void btnSaveClick() {
 		if(mode.equals("insert")) {
 			model.setId(Long.valueOf(models.size()));
 			blandBean.addModelToBland(selectedBlandID, model);
-			
 			model.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
 			models.add(model);
 		} else {
-			selectedModel.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
+			blandBean.updateModelToBland(selectedBlandID, model);
+			//selectedModel.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
 		}
 		logger.debug("btnSaveClick");
 	}

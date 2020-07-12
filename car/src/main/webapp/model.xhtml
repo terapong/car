@@ -86,6 +86,7 @@
     		<p:column>
     			<p:selectOneMenu id="b" value="#{modelbean.selectedBlandID}">
             <f:selectItems value="#{modelbean.blandBean.blands}" var="bland" itemLabel="#{bland.name}" itemValue="#{bland.id}"/>
+            <p:ajax event="valueChange" listener="#{modelbean.selectBlandChang()}" />
         	</p:selectOneMenu>
     		</p:column>
     	</p:row>

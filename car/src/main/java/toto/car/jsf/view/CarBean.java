@@ -152,6 +152,10 @@ public class CarBean implements Serializable {
 	public void btnEditClick(Car r) {
 		selectedCar = r;
 		car = r;
+		selectedColorID = r.getColor().getId();
+		selectedBlandID = r.getBland().getId();
+		selectedModelID = r.getModel().getId();
+		
 		mode = "edit";
 		logger.debug("btnEditClick");
 	}

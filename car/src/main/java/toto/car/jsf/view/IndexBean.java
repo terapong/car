@@ -3,7 +3,12 @@ package toto.car.jsf.view;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 
 import java.io.Serializable;
@@ -127,6 +132,20 @@ public class IndexBean implements Serializable {
 //			return null;
 //		}
 	}
+	
+	public String logout() {
+		//employee = vasessionbean.getEmployee();
+		FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        try {
+            request.logout();
+            logger.debug("Logout from system");
+        } catch (ServletException e) {
+            context.addMessage(null, new FacesMessage("Logout failed!"));
+        } 
+        context.getExternalContext().invalidateSession();
+        return "index?facesRedirect=true";
+    }
 	
 	public void RegisterClick() {
 		logger.debug("Register click");

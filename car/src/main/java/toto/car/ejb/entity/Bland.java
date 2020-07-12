@@ -30,6 +30,10 @@ public class Bland implements Serializable {
     
     @OneToMany(mappedBy = "bland", fetch = FetchType.EAGER)
 	private List<Model> models;
+    
+    @ManyToOne
+	@JoinColumn(name = "shop_id")
+	private Shop shop;
 
 	public Long getId() {
 		return id;

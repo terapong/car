@@ -26,6 +26,10 @@ public class Color implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="update_date", length=19)
     private Date updateDate;
+    
+    @ManyToOne
+	@JoinColumn(name = "shop_id")
+	private Shop shop;
 
 	public Long getId() {
 		return id;

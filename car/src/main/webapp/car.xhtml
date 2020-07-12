@@ -87,8 +87,17 @@
 	  <p:commandButton value="ใช่" update=":mainCenterForm" onclick="PF('confirmDeleteCarDialog').hide()" actionListener="#{carbean.confirmDeleteClick}" process="@this" ajax="true" icon="ui-icon-check"/>  
 	  <p:commandButton value="ไม่ใช่" onclick="PF('confirmDeleteCarDialog').hide()" type="button"  icon="ui-icon-closethick"/>   
   </p:confirmDialog>
+  
+  <p:dialog id="photoObjectDlg" header="รูปรถ" widgetVar="photoObjectDlg" modal="true" appendTo="@(body)" width="500px" height="300px" closable="true">
+  	<p:panelGrid>
+  		<p:row>
+  			<p:column><p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}"/></p:column>
+  			<p:column><p:commandButton type="button" value="Capture" onclick="PF('pc').capture()"/></p:column>
+  		</p:row>
+  	</p:panelGrid>
+  </p:dialog>
 	
-	<p:dialog id="newObjectDlg" header="รถ" widgetVar="newObjectDlg" modal="true" appendTo="@(body)" width="500px" height="180px" closable="true">
+	<p:dialog id="newObjectDlg" header="รถ" widgetVar="newObjectDlg" modal="true" appendTo="@(body)" width="500px" height="300px" closable="true">
     <p:panelGrid id="panelInput">
     	<p:row>
     		<p:column><h:outputText value="ทะเบียนรถ: "/></p:column>
@@ -124,9 +133,21 @@
     	</p:row>
     	<p:row>
     		<p:column><h:outputText value="รูป 1: "/></p:column>
-    		<p:column><p:inputText value="#{carbean.car.pic1}" style="width: 90px"/></p:column>
+    		<p:column><p:commandButton value="เพิ่มรูปรถ 1" icon="ui-icon-plus" oncomplete="PF('photoObjectDlg').show()" process="@this" update = "photo1"/></p:column>
     		<p:column><h:outputText value="รูป 2: "/></p:column>
-    		<p:column><p:inputText value="#{carbean.car.pic2}" style="width: 90px"/></p:column>
+    		<p:column><p:commandButton value="เพิ่มรูปรถ 2" icon="ui-icon-plus" oncomplete="PF('photoObjectDlg').show()" process="@this" update = "photo2"/></p:column>
+    	</p:row>
+    	<p:row>
+    		<p:column colspan="2">
+    			<p:outputPanel id="photo1">
+            <p:graphicImage url="http://localhost:8080/images/led_red.png"/>
+        	</p:outputPanel>
+        </p:column>
+    		<p:column colspan="2">
+    			<p:outputPanel id="photo2">
+            <p:graphicImage url="http://localhost:8080/images/led_blue.png"/>
+        	</p:outputPanel>
+        </p:column>
     	</p:row>
     	<p:row>
     		<p:column colspan="2" style="text-align: center">

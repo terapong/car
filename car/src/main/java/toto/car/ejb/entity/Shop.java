@@ -64,6 +64,15 @@ public class Shop implements Serializable {
     
     @OneToMany(mappedBy = "shop", fetch = FetchType.EAGER)
 	private List<Customer> customers;
+    
+//    @OneToMany(mappedBy = "shop", fetch = FetchType.EAGER)
+//	private List<Color> colors;
+    
+    @OneToMany(mappedBy = "shop", fetch = FetchType.EAGER)
+	private List<Model> models;
+    
+    @OneToMany(mappedBy = "shop", fetch = FetchType.EAGER)
+	private List<Bland> blands;
 
 	public Long getId() {
 		return id;
@@ -199,5 +208,29 @@ public class Shop implements Serializable {
 
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
+	}
+
+//	public List<Color> getColors() {
+//		return colors;
+//	}
+//
+//	public void setColors(List<Color> colors) {
+//		this.colors = colors;
+//	}
+
+	public List<Model> getModels() {
+		return models;
+	}
+
+	public void setModels(List<Model> models) {
+		this.models = models;
+	}
+
+	public List<Bland> getBlands() {
+		return blands;
+	}
+
+	public void setBlands(List<Bland> blands) {
+		this.blands = blands;
 	}
 }

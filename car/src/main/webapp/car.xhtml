@@ -110,14 +110,15 @@
     		<p:column><h:outputText value="ยี่ห้อ: "/></p:column>
     		<p:column>
     			<p:selectOneMenu id="b" value="#{carbean.selectedBlandID}">
-            <f:selectItems value="#{carbean	.blandBean.blands}" var="bland" itemLabel="#{bland.name}" itemValue="#{bland.id}"/>
+            <f:selectItems value="#{carbean.blandBean.blands}" var="bland" itemLabel="#{bland.name}" itemValue="#{bland.id}"/>
             <p:ajax event="valueChange" listener="#{carbean.selectBlandChang()}" update="m" process="@this" />
         	</p:selectOneMenu>
     		</p:column>
     		<p:column><h:outputText value="รุ่น: "/></p:column>
     		<p:column>
     			<p:selectOneMenu id="m" value="#{carbean.selectedModelID}">
-            <f:selectItems value="#{carbean.modelBean.models}" var="model" itemLabel="#{model.name}" itemValue="#{model.id}"/>
+            <f:selectItems value="#{carbean.blandBean.models}" var="model" itemLabel="#{model.name}" itemValue="#{model.id}"/>
+            <p:ajax event="valueChange" listener="#{carbean.selectModelChang()}" process="@this" />
         	</p:selectOneMenu>
     		</p:column>
     	</p:row>

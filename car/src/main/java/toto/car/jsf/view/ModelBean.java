@@ -2,6 +2,7 @@ package toto.car.jsf.view;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -16,7 +17,8 @@ import java.util.Calendar;
 import toto.car.ejb.entity.*;
 
 @Named("modelbean")
-@ViewScoped
+//@ViewScoped
+@ApplicationScoped
 public class ModelBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(ModelBean.class);
@@ -104,6 +106,9 @@ public class ModelBean implements Serializable {
 	
 	public void btnSaveClick() {
 		if(mode.equals("insert")) {
+			model.setId(Long.valueOf(models.size()));
+			blandBean.addModelToBland(selectedBlandID, model);
+			
 			model.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
 			models.add(model);
 		} else {

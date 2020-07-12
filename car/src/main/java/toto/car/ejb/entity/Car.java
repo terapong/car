@@ -55,6 +55,10 @@ public class Car implements Serializable {
 //   	@JoinColumn(name = "shop_id")
 //   	private Shop shop;
     
+    @ManyToOne
+ 	@JoinColumn(name = "customer_id")
+ 	private Customer customer;
+    
 	public Long getId() {
 		return id;
 	}
@@ -157,6 +161,14 @@ public class Car implements Serializable {
 
 	public void setCarStatus(boolean carStatus) {
 		this.carStatus = carStatus;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 }

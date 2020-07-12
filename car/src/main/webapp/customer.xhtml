@@ -68,16 +68,14 @@
 							<p:commandButton value="รายละเอียด"/>
 						</p:column>
 						<p:column>
-							<p:commandButton value="เช็ค PGS"/>
+							<p:commandButton value="เช็ค GPS"/>
 						</p:column>
 						<f:facet name="paginatorBottomRight">
         		</f:facet>
+        		<f:facet name="footer">
+        			<p:commandButton icon="ui-icon-plus" value="เพิ่มลูกค้า" actionListener="#{customerbean.btnNewClick}" oncomplete="PF('addCustomer').show()" process="@this" update=":mainCenterForm" resetValues="true"/>
+        		</f:facet>
 					</p:dataTable>
-				</p:column>
-			</p:row>
-			<p:row>
-				<p:column colspan="4" style="text-align: center">
-					<p:commandButton icon="ui-icon-plus" value="เพิ่มลูกค้า" actionListener="#{customerbean.btnNewClick}" oncomplete="PF('addCustomer').show()" process="@this" update=":mainCenterForm" resetValues="true"/>
 				</p:column>
 			</p:row>
 		</p:panelGrid>

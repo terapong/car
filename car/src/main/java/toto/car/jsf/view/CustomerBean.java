@@ -2,6 +2,7 @@ package toto.car.jsf.view;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +15,8 @@ import java.util.Calendar;
 import toto.car.ejb.entity.*;
 
 @Named("customerbean")
-@ViewScoped
+//@ViewScoped
+@ApplicationScoped
 public class CustomerBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(CustomerBean.class);

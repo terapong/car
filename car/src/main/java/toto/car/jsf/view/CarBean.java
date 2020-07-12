@@ -2,6 +2,7 @@ package toto.car.jsf.view;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -12,11 +13,13 @@ import org.apache.log4j.Logger;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import toto.car.ejb.entity.*;
 
 @Named("carbean")
-@ViewScoped
+//@ViewScoped
+@ApplicationScoped
 public class CarBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(CarBean.class);
@@ -32,8 +35,6 @@ public class CarBean implements Serializable {
 	private Long selectedBlandID;
 	private Long selectedColorID;
 	private Long selectedModelID;
-	
-	private ArrayList<Model> models;
 	
 	@Inject
 	private IndexBean indexBean;
@@ -52,7 +53,10 @@ public class CarBean implements Serializable {
 		logger.debug("init");
 		cal = Calendar.getInstance();
 		cars = setDummyCar();
-		
+		selectedBlandID = 0L;
+		blandBean.getModelByBland(selectedBlandID);
+		modelBean.setSelectModelID(0L);
+		colorBean.setSelectColorID(0L);
 	}
 	
 	@PreDestroy
@@ -61,9 +65,16 @@ public class CarBean implements Serializable {
 	}
 	
 	public void selectBlandChang() {
-		//models = blandBean.getModelByBland(selectedBlandID);
+		blandBean.getModelByBland(selectedBlandID);
+		selectedModelID = blandBean.getModels().get(0).getId();
 		logger.debug("selectedBlandID: " + selectedBlandID);
+		logger.debug("selectedModelID: " + selectedModelID);
 		logger.debug("selectBlandChang: " + blandBean.getBlands().get(selectedBlandID.intValue()).getName());
+	}
+	
+	public void selectModelChang() {
+		logger.debug("selectedModelID: " + selectedModelID);
+		logger.debug("selectModelChang: " + modelBean.getModels().get(selectedModelID.intValue()).getName());
 	}
 	
 	private ArrayList<Car> setDummyCar() {
@@ -131,6 +142,10 @@ public class CarBean implements Serializable {
 		selectedBlandID = 0L;
 		selectedModelID = 0L;
 		
+		colorBean.setSelectColorID(selectedColorID);
+		blandBean.getModelByBland(selectedBlandID);
+		modelBean.setSelectModelID(selectedModelID);
+		
 		logger.debug("btnNewClick");
 	}
 	
@@ -146,6 +161,7 @@ public class CarBean implements Serializable {
 			car.setColor(colorBean.getColors().get(selectedColorID.intValue()));
 			car.setBland(blandBean.getBlands().get(selectedBlandID.intValue()));
 			car.setModel(modelBean.getModels().get(selectedModelID.intValue()));
+			car.setId(Long.valueOf(cars.size()));
 			cars.add(car);
 		} else {
 			selectedCar.setColor(colorBean.getColors().get(selectedColorID.intValue()));
@@ -250,13 +266,5 @@ public class CarBean implements Serializable {
 
 	public void setSelectedModelID(Long selectedModelID) {
 		this.selectedModelID = selectedModelID;
-	}
-
-	public ArrayList<Model> getModels() {
-		return models;
-	}
-
-	public void setModels(ArrayList<Model> models) {
-		this.models = models;
 	}
 }

@@ -2,7 +2,7 @@ package toto.car.jsf.view;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import org.apache.log4j.Logger;
 
@@ -12,7 +12,8 @@ import java.util.Calendar;
 import toto.car.ejb.entity.*;
 
 @Named("indexbean")
-@SessionScoped
+//@SessionScoped
+@ApplicationScoped
 public class IndexBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(IndexBean.class);

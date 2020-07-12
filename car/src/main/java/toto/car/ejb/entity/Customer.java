@@ -2,6 +2,7 @@ package toto.car.ejb.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -72,8 +73,9 @@ public class Customer implements Serializable {
 //	@JoinColumn(name = "role_id")
 //	private Role role;
     
-//    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
-//	private List<Car> cars;    
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
+	private List<Car> cars; 
+    
     
     @ManyToOne
    	@JoinColumn(name = "shop_id")
